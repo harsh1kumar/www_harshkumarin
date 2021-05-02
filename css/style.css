@@ -259,12 +259,12 @@ a {
 /* Contact Section */
 /****************************/
 
-#contact-image {
-	max-width: 100%;
+#contact {
+	background:rgb(240, 240, 240);
 }
 
-#contact-right {
-	background:rgb(240, 240, 240);
+#contact-image {
+	max-width: 100%;
 }
 
 #contact-heading {
