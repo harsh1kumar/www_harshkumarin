@@ -12,7 +12,7 @@
 					"Visitor Email: $visitor_email.\n".
 					"Message: $message.\n\n";
 	
-	$email_to = "harshkacc1@gmail.com";
+	$email_to = "";
 	$headers = "From: $email_from \r\n".
 				"Reply-To: $visitor_email \r\n";
 	
