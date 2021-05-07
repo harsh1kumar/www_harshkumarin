@@ -54,7 +54,7 @@ a {
 }
 
 .menu-item {
-	float: right;
+	float: left;
 	font-size: 15px;
 	color: #eee;
 	width: 130px;
