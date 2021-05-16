@@ -295,12 +295,33 @@ a {
 	padding: 10px;
 	text-align: center;
 	font-size: 40px;
-	margin: 5% 0 5% 0;
+	margin: 3% 0;
+}
+
+#contact-socials {
+	text-align: center;
+}
+
+.social-image {
+	width: 5%;
+	margin: 0 2%;
+	text-align: center;
+	filter: grayscale(100%);
+	opacity: 0.6;
+}
+
+.social-image:hover {
+	filter: grayscale(0%);
+	opacity: 1;
+}
+
+#yt-logo {
+	width: 6.5%;
 }
 
 #contact-form {
 	padding: 10px 15px;
-	margin: 5%;
+	margin: 2% 5%;
 }
 
 .input {
