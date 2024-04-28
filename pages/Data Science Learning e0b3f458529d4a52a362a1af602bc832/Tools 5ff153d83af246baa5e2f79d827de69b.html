@@ -1,0 +1,843 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Tools</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="5ff153d8-3af2-46ba-a5e2-f79d827de69b" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🛠️</span></div><h1 class="page-title">Tools</h1><p class="page-description"></p></header><div class="page-body"><nav id="b6fc2396-8545-4515-9e4f-b529cea270d5" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#a45eb066-7a8b-4e92-a439-00733ad4d99a">dbt</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#89f4d3db-bfcf-4d58-a99c-ec5c9efcf33c">Docker</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#cb200fa1-2515-49b1-9bb9-023c3dcf3153">Install</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#ed0f5b44-b72a-491e-8edc-f193cf930b08">Sample Dockerfile</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a3cb85ff-a029-4b21-90d2-d54985553fdd">Docker Compose</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c19bb411-9397-44ce-8dd2-1befab9adb4a">Videos</a></div></nav><h1 id="a45eb066-7a8b-4e92-a439-00733ad4d99a" class="">dbt</h1><ol type="1" id="c72fee93-67de-4659-a033-8ba3a587fd37" class="numbered-list" start="1"><li>Video Tutorial</li></ol><figure id="1ab5b67b-50c7-4ca1-bfbd-24cbb4790072"><a href="https://www.youtube.com/watch?v=toSAAgLUHuk" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">dbt (data build tool) Crash Course For Beginners (dbt Core) | Full Tutorial</div><div class="bookmark-description">In this dbt Crash Course, I will walk you through how to use dbt Core to run your data transformation workflow . This is going to be a crash course meant to be covering the basics for you to get started. For more advanced topics, I will be covering them in separate videos.
+
+dbt stands for Data Build Tool, is an open-source data transformation and data warehousing tool created by dbt lab, designed to handle the complexity of modern data pipelines. It provides a framework for defining, testing, and deploying SQL transformations and helps automate the process of building, maintaining and updating a data warehouse. dbt enables data analysts, data engineers, and data scientists to build, version, and maintain a library of reusable data transformations.
+
+📑 More on dbt (data build tool): https://www.getdbt.com/
+
+📄 Profiles reference: https://docs.getdbt.com/reference/profiles.yml
+
+📑 Supported databases: https://docs.getdbt.com/docs/supported-data-platforms
+
+► Buy Me a Coffee? Your support is much appreciated!
+-------------------------------------------------------------------------------------------
+☕ Paypal: https://www.paypal.me/jiejenn/5
+☕ Venmo: @Jie-Jenn
+💸 Join Robinhood with my link and we&#x27;ll both get a free stock: https://bit.ly/3iWr7LC
+
+► Support my channel so I can continue making free contents
+---------------------------------------------------------------------------------------------------------------
+🛒 By shopping on Amazon → https://amzn.to/2JkGeMD
+👩‍💻 Follow me on Linked: https://www.linkedin.com/in/jiejenn/
+🌳 Becoming a Patreon supporter: https://www.patreon.com/JieJenn
+✉️ Business Inquiring: YouTube@LearnDataAnalysis.org
+
+00:00 - Intro
+01:04 - Prerequisites
+01:54 - Agenda
+02:25 - Create dbt project Python virtual environment
+03:44 - Install dbt Core CLI &amp; database adapter
+05:26 - Init dbt project
+05:42 - Set up database connection (Google BigQuery)
+11:08 - dbt dry run
+14:13 - Push file to a GitHub repo
+16:36 - Build dbt models
+20:06 - Configure dbt model materialization
+26:16 - Build dbt models on top of other models
+30:43 - Testing
+33:49 - Generate documentation
+
+#dbt #databuildtool #dbtlab #dataengineering #dataanalytics</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/a0a44d15/img/favicon_144x144.png" class="icon bookmark-icon"/>https://www.youtube.com/watch?v=toSAAgLUHuk</div></div><img src="https://i.ytimg.com/vi/toSAAgLUHuk/maxresdefault.jpg" class="bookmark-image"/></a></figure><ol type="1" id="d204c5b2-0719-43c1-80d5-d663438191f5" class="numbered-list" start="2"><li>dbt sample project: <a href="https://github.com/harsh1kumar/learning/tree/master/dbt">https://github.com/harsh1kumar/learning/tree/master/dbt</a></li></ol><p id="82e0a56a-0a10-40a8-be67-dd2856060cfe" class="">
+</p><h1 id="89f4d3db-bfcf-4d58-a99c-ec5c9efcf33c" class="">Docker</h1><h3 id="cb200fa1-2515-49b1-9bb9-023c3dcf3153" class="">Install</h3><p id="cdd90e47-9036-4c66-8cff-cd58af0fa4f3" class="">If not possible to install docker-desktop due to licence requirements, use <code>colima</code> (<a href="https://github.com/abiosoft/colima">details</a>)</p><p id="769f9105-4f9e-407f-8b31-3c95098b73d0" class=""><div class="indented"><h3 id="2f26d3d4-addc-476d-8fc4-ba8ea978e9f7" class="">Commands</h3></div></p><ul id="7a3516ea-0513-4451-9c1d-dea63d148c6f" class="bulleted-list"><li style="list-style-type:disc">docker run nginx</li></ul><ul id="ebc8198b-9832-4c89-9bc7-b1aeceb0c6f9" class="bulleted-list"><li style="list-style-type:disc">docker run -p 8080:80 nginx <code>map 8080 port to port 80 of nginx container</code></li></ul><ul id="a9275fb5-ba6a-4e6d-9940-b72389bcc6ab" class="bulleted-list"><li style="list-style-type:disc">docker ps</li></ul><ul id="1ab5d038-fe89-41ba-ba58-55a2368180c7" class="bulleted-list"><li style="list-style-type:disc">docker ps -a</li></ul><ul id="9307101c-daee-4067-8f3d-f019a95337f6" class="bulleted-list"><li style="list-style-type:disc">docker run -d nginx  <code>starts nginx docker container in background</code></li></ul><ul id="ce3fe044-3bd5-4ff0-a248-e24adaced5b7" class="bulleted-list"><li style="list-style-type:disc">docker stop &lt;first few letters of Container ID&gt;</li></ul><ul id="93a526b6-ffb2-480e-a22e-a315d4762671" class="bulleted-list"><li style="list-style-type:disc">docker rm &lt;container ID&gt;</li></ul><ul id="93cad889-d122-4716-8bcb-cb829206d7c8" class="bulleted-list"><li style="list-style-type:disc">docker rm -f &lt;container ID&gt;/name <code>delete a running container forcefully</code></li></ul><ul id="191c4bd0-4053-4bf6-a3a1-fa6686e1fc4c" class="bulleted-list"><li style="list-style-type:disc">docker start &lt;container ID&gt;/name</li></ul><ul id="5650f294-21d2-4c92-98c0-3ca580bcd302" class="bulleted-list"><li style="list-style-type:disc">docker images</li></ul><ul id="ab0d7a58-76e9-49f0-8d0e-447a124ec38e" class="bulleted-list"><li style="list-style-type:disc">docker system prune</li></ul><p id="25898a69-6cce-4c37-8483-7dcc19e5ec11" class="">
+</p><ul id="f2bdb446-b288-49e2-94df-679289afabeb" class="bulleted-list"><li style="list-style-type:disc">docker cp this.png &lt;first few letters of Container ID&gt;:th.txt</li></ul><ul id="4fbcec02-e8c6-4da9-bc3b-5a711cf43058" class="bulleted-list"><li style="list-style-type:disc">docker exec -it &lt;first few letters of Container ID&gt; bash</li></ul><ul id="43a26f49-a640-4b5f-a47f-0ad0f980f4f3" class="bulleted-list"><li style="list-style-type:disc">docker run -it &lt;docker-image&gt; bash<ul id="bb45792e-e383-4086-9524-1609b16cd4e4" class="bulleted-list"><li style="list-style-type:circle">docker run -it &lt;docker-image&gt; /bin/sh —login <code>for alpine images</code></li></ul></li></ul><ul id="866e9933-95a3-4dc5-b7e1-e4ff450a5313" class="bulleted-list"><li style="list-style-type:disc">docker cp &lt;first few letters of Container ID&gt;:mine.txt this.uu // copy from container to source</li></ul><ul id="06d2753c-1795-4554-a5dc-1b161a2a9a3d" class="bulleted-list"><li style="list-style-type:disc">docker exec -it &lt;Container_ID&gt; bash // executes a command inside an existing container</li></ul><ul id="76819225-9b90-4cb3-8e2b-ada56d4460bd" class="bulleted-list"><li style="list-style-type:disc">docker commit container</li></ul><p id="dbf1dd6e-6c22-466b-bc99-3ebc42da53a4" class="">
+</p><blockquote id="a37657d4-d7a5-4517-91e4-2d5bfa0c18f6" class=""><strong>How is </strong><strong><code>docker run</code></strong><strong> different from </strong><code><strong>docker exec</strong></code><strong>?<br/><br/></strong><code>docker run</code> is the command you use to create a new container from an image, whilst <code>docker exec</code> lets you run commands on an already running container</blockquote><p id="45e99870-fb50-4127-bf11-e666a13c60a9" class="">
+</p><p id="ff9070ea-ff05-4bba-8996-8bbfa08d8fb6" class=""><strong>Docker cheat sheet</strong>: <a href="https://dockerlabs.collabnix.com/docker/cheatsheet/">https://dockerlabs.collabnix.com/docker/cheatsheet/</a></p><h3 id="ed0f5b44-b72a-491e-8edc-f193cf930b08" class="">Sample Dockerfile</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="de1b66b0-bc32-4f84-bfff-d23d5a86ae9d" class="code"><code class="language-Docker">FROM python:3.7-alpine
+
+COPY . /app
+WORKDIR /app
+ENV MY_ENV=some_value
+
+RUN pip install -r requirements.txt
+EXPOSE 5000  # Expose port 5000 from container to host machine
+
+CMD python app.py</code></pre><blockquote id="ca3a5e78-b58b-4299-b1d6-2eca4e9318c4" class=""><strong>How is </strong><strong><code>RUN</code></strong><strong> different from </strong><strong><code>CMD</code></strong><strong>?<br/><br/></strong><br/>1. <br/><code>RUN</code> gets executed during docker build and creates another layer in the image. <code>CMD</code> executes when the docker file in run.<br/>2. Multiple <br/><code>RUN</code> can be executed in dockerfile, but only the last <code>CMD</code> is executed </blockquote><p id="b8223a78-677c-4cac-93f0-b1a0c9350e1a" class="">
+</p><ul id="e77d2e56-350e-44eb-897b-95cb43b6574b" class="bulleted-list"><li style="list-style-type:disc">docker build .</li></ul><ul id="1590edb3-92e5-4e3b-95dc-ab8bfeb0a9cc" class="bulleted-list"><li style="list-style-type:disc">docker build -t vieux/apache:latest -t vieux/apache:2.0</li></ul><p id="ad2c06b8-f79d-4a9d-b251-85f970eea303" class="">
+</p><h3 id="a3cb85ff-a029-4b21-90d2-d54985553fdd" class="">Docker Compose</h3><ul id="18336431-0dcf-4a0b-89c4-7ea793897e64" class="bulleted-list"><li style="list-style-type:disc">docker compose up</li></ul><ul id="ad2a8875-321f-406d-9945-ea1d2428012b" class="bulleted-list"><li style="list-style-type:disc">docker compose stop </li></ul><p id="b5b6480d-fd13-4341-9095-d0d0512e81d9" class="">Sample <code>docker-compose.yml</code> file</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="41c16f41-8272-4edd-9717-bf3accd16de0" class="code"><code class="language-YAML">version: &#x27;3&#x27;
+services:
+  app:
+    image: my-app
+		build: .
+    ports:
+      - &quot;8000:8000&quot;
+    working_dir: /app
+    environment:
+      MYAPP_ENV: some_env
+  mongo:
+    image: mongo
+    container_name: app_mongo
+    restart: always</code></pre><h3 id="c19bb411-9397-44ce-8dd2-1befab9adb4a" class="">Videos</h3><ol type="1" id="e3492a92-c0d7-4093-915b-0540308dc193" class="numbered-list" start="1"><li>Short Tutorial by Harry</li></ol><figure id="0517f772-5857-440d-922d-1137ae1c446b"><a href="https://www.youtube.com/watch?v=WNUCAPKa44Y" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Ultimate Docker Crash Course: Learn Docker within 30 Minutes!</div><div class="bookmark-description">Linode is providing all the CodeWithHarry viewers with $100 free credit. Claim your $100 60-day credit at https://linode.com/cwh to follow along!
+►Checkout my English channel here: https://www.youtube.com/channel/UC7btqG2Ww0_2LwuQxpvo2HQ
+►Instagram: www.instagram.com/codewithharry
+
+python, C, C++, Java, JavaScript and Other Cheetsheets [++]:
+Playlist: https://www.youtube.com/playlist?list=PLu0W_9lII9agrsRZjFECeFuWY5ev2pQlk
+
+►Learn in One Video[++]:
+Python[15 Hr] - https://www.youtube.com/watch?v=gfDE2a7MKjA&amp;list=PLu0W_9lII9ahKZ42vg2w9ERPmShYbYAB7
+Python Advance[3.5 Hr] - https://www.youtube.com/watch?v=61a7UkDO50s&amp;list=PLu0W_9lII9ahKZ42vg2w9ERPmShYbYAB7
+Python[1 Hr] - https://www.youtube.com/watch?v=qHJjMvHLJdg&amp;list=PLu0W_9lII9ahKZ42vg2w9ERPmShYbYAB7
+Python[2 Hr] - https://www.youtube.com/watch?v=ihk_Xglr164&amp;list=PLu0W_9lII9ahKZ42vg2w9ERPmShYbYAB7
+Python[15 Min] -https://www.youtube.com/watch?v=fr1f84rg4Nw&amp;list=PLu0W_9lII9ahKZ42vg2w9ERPmShYbYAB7
+JavaScript[1 Hr] - https://www.youtube.com/watch?v=onbBV0uFVpo&amp;list=PLu0W_9lII9ahKZ42vg2w9ERPmShYbYAB7
+C[1.3 Hr]-https://www.youtube.com/watch?v=YXcgD8hRHYY&amp;list=PLu0W_9lII9ahKZ42vg2w9ERPmShYbYAB7
+php[1 Hr] - https://www.youtube.com/watch?v=xW7ro3lwaCI&amp;list=PLu0W_9lII9ahKZ42vg2w9ERPmShYbYAB7
+php[2.3 Hr] -https://www.youtube.com/watch?v=1SnPKhCdlsU&amp;list=PLu0W_9lII9ahKZ42vg2w9ERPmShYbYAB7
+php[Project]- https://www.youtube.com/watch?v=-al2bECumKg&amp;list=PLu0W_9lII9ahKZ42vg2w9ERPmShYbYAB7
+HTML[30 Min] -https://www.youtube.com/watch?v=E3ByCRqE7Lo&amp;list=PLu0W_9lII9ahKZ42vg2w9ERPmShYbYAB7
+CSS[8.5 Hr] -https://www.youtube.com/watch?v=Edsxf_NBFrw&amp;list=PLu0W_9lII9ahKZ42vg2w9ERPmShYbYAB7
+CSS[1.4 Hr] -https://www.youtube.com/watch?v=u5-K_ua9sOw&amp;list=PLu0W_9lII9ahKZ42vg2w9ERPmShYbYAB7
+Wordpress[3.2 Hr] -https://www.youtube.com/watch?v=GlLRYml8mCY&amp;list=PLu0W_9lII9ahKZ42vg2w9ERPmShYbYAB7
+Angular[2 Hr] -https://www.youtube.com/watch?v=0LhBvp8qpro&amp;list=PLu0W_9lII9ahKZ42vg2w9ERPmShYbYAB7
+Java[2.3 Hr] -https://www.youtube.com/watch?v=rV_3Lewxx6o&amp;list=PLu0W_9lII9ahKZ42vg2w9ERPmShYbYAB7
+Web Scraping[1 Hr] -https://www.youtube.com/watch?v=uufDGjTuq34&amp;list=PLu0W_9lII9ahKZ42vg2w9ERPmShYbYAB7
+MongoDB[2 Hr] -https://www.youtube.com/watch?v=oSIv-E60NiU&amp;list=PLu0W_9lII9ahKZ42vg2w9ERPmShYbYAB7
+Numpy[1 Hr] -https://www.youtube.com/watch?v=Rbh1rieb3zc&amp;list=PLu0W_9lII9ahKZ42vg2w9ERPmShYbYAB7
+Android Dev[12 Hr]- https://www.youtube.com/watch?v=mXjZQX3UzOs
+Linux[1 Hr] -https://www.youtube.com/watch?v=_tCY-c-sPZc&amp;list=PLu0W_9lII9ahKZ42vg2w9ERPmShYbYAB7
+JQuery[1.1 Hr] -https://www.youtube.com/watch?v=YFlx1C8XwR0&amp;list=PLu0W_9lII9ahKZ42vg2w9ERPmShYbYAB7
+Git and GitHub[1.1 Hr] -https://www.youtube.com/watch?v=gwWKnnCMQ5c&amp;list=PLu0W_9lII9ahKZ42vg2w9ERPmShYbYAB7
+
+►Complete course [playlist]:
+React - https://www.youtube.com/playlist?list=PLu0W_9lII9agx66oZnT6IyhcMIbUMNMdt
+Python-https://www.youtube.com/playlist?list=PLu0W_9lII9agICnT8t4iYVSZ3eykIAOME
+OOP Python-https://www.youtube.com/playlist?list=PLu0W_9lII9ahfRrhFcoB-4lpp9YaBmdCP
+Java -https://www.youtube.com/playlist?list=PLu0W_9lII9agS67Uits0UnJyrYiXhDS6q
+JavaScript- https://www.youtube.com/playlist?list=PLu0W_9lII9ajyk081To1Cbt2eI5913SsL
+PHP-https://www.youtube.com/playlist?list=PLu0W_9lII9aikXkRE0WxDt1vozo3hnmtR
+C-https://www.youtube.com/playlist?list=PLu0W_9lII9aiXlHcLx-mDH1Qul38wD3aR
+C++-https://www.youtube.com/playlist?list=PLu0W_9lII9agpFUAlPFe_VNSlXW5uE0YL
+Git &amp; GitHub-https://www.youtube.com/playlist?list=PLu0W_9lII9ahVQekD7ePHmnirTePXwIln
+Android Dev- https://www.youtube.com/playlist?list=PLu0W_9lII9aiL0kysYlfSOUgY5rNlOhUd
+Python GUI- https://www.youtube.com/playlist?list=PLu0W_9lII9ajLcqRcj4PoEihkukF_OTzA
+Web Development- https://www.youtube.com/playlist?list=PLu0W_9lII9agiCUZYRsvtGTXdxkzPyItg
+Python Django -https://www.youtube.com/playlist?list=PLu0W_9lII9ah7DDtYtflgwMwpT3xmjXY9
+Projects Using HTML, CSS &amp; Javascript- https://www.youtube.com/playlist?list=PLu0W_9lII9aiQiOwthuSvinxoflmhRxM3
+Data Structure and Algo -https://www.youtube.com/playlist?list=PLu0W_9lII9ahIappRPN0MCAgtOu3lQjQi 
+
+Follow Me On Social Media
+►Website (created using Django Rest &amp; Angular) - https://www.codewithharry.com
+►Facebook - https://www.facebook.com/CodeWithHarry
+►Instagram - https://www.instagram.com/codewithharry/ 
+Twitter - https://twitter.com/CodeWithHarry
+Comment &quot;#HarryBhai&quot; if you read this 😉😉</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/fc8159e8/img/favicon_144x144.png" class="icon bookmark-icon"/>https://www.youtube.com/watch?v=WNUCAPKa44Y</div></div><img src="https://i.ytimg.com/vi/WNUCAPKa44Y/maxresdefault.jpg" class="bookmark-image"/></a></figure><ol type="1" id="bb9ba455-681a-43b5-88e4-becd1b499fb6" class="numbered-list" start="2"><li>Full Tutorial</li></ol><figure id="13b44872-333e-4123-b399-93f3ae0c233e"><a href="https://www.youtube.com/watch?v=8vmKtS8W7IQ" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Complete Dockers For Data Science Tutorial In One Shot</div><div class="bookmark-description">In this videos we will be seeing how we can implement end to end Data Science Project Implementation
+
+Github Materials: https://github.com/krishnaik06/Docker-For-Data-Science
+
+Join iNeuron&#x27;s Data Science Masters Course with Job Guaranteed Starting From April 3rd 2023
+https://ineuron.ai/course/Full-Stack-Data-Science-Masters
+
+Join the PWSKILLS Data Science Masters Course
+Best Affordable Data Science Course From Pwskills(6-7 Months)
+
+Impact Batch 2.0:- Data-Science-Masters (Full Stack Data Science)
+1. Data Science Masters Hindi: http://bit.ly/3TPdrDz (Hindi)
+2. Data Science Masters English: https://bit.ly/40gZ9hn (English)
+
+TimeStamp:
+00:00:00 Docker Series Introduction
+00:01:00 What are Dockers And Containers
+00:13:04 Dockers Images Vs Contaiiners
+00:18:47 Dockers Vs Virtual Machines
+00:26:31 Dockers Installation
+00:38:20 Creating A Docker Images
+00:52:22 Push Docker Image To Docker
+01:01:08 Docker Compose
+
+Join this channel membership to get access to materials:
+https://www.youtube.com/channel/UCNU_lfiiWBdtULKOw6X0Dig/join
+
+check out the end to end project playlist
+https://youtube.com/playlist?list=PLZoTAELRMXVPS-dOaVbAux22vzqdgoGhG
+
+Check Out My Other Playlist
+Python Playlist:
+Python In English:https://www.youtube.com/watch?v=bPrmA1SEN2k&amp;list=PLZoTAELRMXVNUL99R4bDlVYsncUNvwUBB
+
+Python In Hindi: https://www.youtube.com/watch?v=MJd9d9Mpxg0&amp;list=PLTDARY42LDV4qqiJd1Z1tShm3mp9-rP4v
+
+Stats Playlist: 
+English 7 Days Statistics Live Session :https://www.youtube.com/watch?v=11unm2hmvOQ&amp;list=PLZoTAELRMXVMgtxAboeAx-D9qbnY94Yay
+Hindi: Stats Playlist: https://www.youtube.com/watch?v=7y3XckjaVOw&amp;list=PLTDARY42LDV6YHSRo669_uDDGmUEmQnDJ
+
+Complete ML Playlist: https://www.youtube.com/watch?v=bPrmA1SEN2k&amp;list=PLZoTAELRMXVPBTrWtJkn3wWQxZkmTXGwe
+
+Hindi: ML Playlist: https://www.youtube.com/watch?v=7uwa9aPbBRU&amp;list=PLTDARY42LDV7WGmlzZtY-w9pemyPrKNUZ
+5 DaysLive Deep Learning Playlist: https://www.youtube.com/watch?v=8arGWdq_KL0&amp;list=PLZoTAELRMXVPiyueAqA_eQnsycC_DSBns
+
+Complete Deep Learning Playlist: 
+https://www.youtube.com/watch?v=YFNKnUhm_-s&amp;list=PLZoTAELRMXVPGU70ZGsckrMdr0FteeRUi</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/fc8159e8/img/favicon_144x144.png" class="icon bookmark-icon"/>https://www.youtube.com/watch?v=8vmKtS8W7IQ</div></div><img src="https://i.ytimg.com/vi/8vmKtS8W7IQ/maxresdefault.jpg" class="bookmark-image"/></a></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
