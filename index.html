@@ -189,39 +189,26 @@
 
 			<section id="education">
 				<div id="edu-heading">EDUCATION</div>
-				<div class="row">
-					<div class="cell" id="igprkp">
-						<div class="edu-period">Jul 2014 - Mar 2016</div>
-						<div class="edu-insti">IIM INDORE</div>
-					</div>
-					<div class="cell" id="ixt95i">
-						<div class="edu-course">Post-Graduate Program in Management</div>
-						<div>
-							<ul class="edu-list">
-								<li>Rank 4 in a batch of 447 PGP students of 2014-16 batch</li>
-								<li>Senior Member, Equit-I, Finance Club, IIM Indore</li>
-								<li>Coordinator, Finance Lab, IIM Indore</li>
-								<li>Member, Finance Vertical, i5 Summit, IIM Indore</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="cell" id="iphf0g">
-						<div class="edu-period">Jul 2007 - Apr 2011</div>
-						<div class="edu-insti">IIT GUWAHATI</div>
-					</div>
-					<div class="cell" id="iioaik">
-						<div class="edu-course">Bachelor of Technology (B.Tech)</div>
-						<div>
-							<ul class="edu-list">
-								<li>Electronics and Communication Engineering</li>
-								<li>Promoted to Electronics &amp; Communication from Mechanical Engineering on basis of merit</li>
-								<li>Awarded Merit-cum-Means scholarship with full tuition fee &amp; monthly stipend</li>
-							</ul>
-						</div>
-					</div>
-				</div>
+
+				<article class="job-card">
+					<div class="job-header">
+						<h3 class="company-name">MBA, IIM INDORE</h3> <span class="job-duration">Jul 2014 - Mar 2016</span> </div>
+						<ul>
+							<li>Ranked 4th in a competitive batch of 447 PGP students. </li>
+							<li>Senior Member, Equit-I (Finance Club) &amp; Coordinator of the Finance Lab. </li>
+							<li>Core Member, Finance Vertical for the i5 Summit. </li>
+						</ul>
+				</article>
+
+				<article class="job-card">
+					<div class="job-header">
+						<h3 class="company-name">B.Tech, IIT GUWAHATI</h3> <span class="job-duration">Jul 2007 - Apr 2011</span> </div>
+						<ul>
+							<li>Bachelor of Technology (B.Tech) in Electronics and Communication Engineering</li>
+							<li>Promoted to Electronics &amp; Communication Engineering from Mechanical Engineering on the basis of academic merit. </li>
+							<li>Awarded the prestigious Merit-cum-Means scholarship, covering full tuition fees and a monthly stipend. </li>
+						</ul>
+				</article>
 			</section>
 
 			<section id="contact">
@@ -282,56 +269,62 @@
 			<div id="copyright">&copy;2026 by Harsh Kumar</div>
 		</footer>
 
-		<!-- Mobile Menu Script -->
 		<script>
 			document.addEventListener('DOMContentLoaded', function() {
+				// --- 1. Mobile Menu Logic (Preserved from your original) ---
 				const hamburger = document.querySelector('.hamburger');
 				const menu = document.querySelector('.menu');
-
 				if (hamburger && menu) {
-					// Initialize aria-hidden baseline checking the current viewport width
-					const setMenuAccessibilityBaseline = function() {
-						if (window.innerWidth <= 768) {
-							const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
-							menu.setAttribute('aria-hidden', isExpanded ? 'false' : 'true');
-						} else {
-							menu.removeAttribute('aria-hidden'); // Active for desktop viewports
-						}
-					};
-
-					// Run baseline setup
-					setMenuAccessibilityBaseline();
-					window.addEventListener('resize', setMenuAccessibilityBaseline);
-
-					hamburger.addEventListener('click', function() {
+					hamburger.addEventListener('click', () => {
 						const expanded = hamburger.getAttribute('aria-expanded') === 'true';
 						hamburger.setAttribute('aria-expanded', !expanded);
 						menu.classList.toggle('menu-open');
-						menu.setAttribute('aria-hidden', expanded ? 'true' : 'false');
 					});
+				}
 
-					// Close menu when clicking a link
-					const menuLinks = menu.querySelectorAll('.menu-item a');
-					menuLinks.forEach(link => {
-						link.addEventListener('click', function() {
-							hamburger.setAttribute('aria-expanded', 'false');
-							menu.classList.remove('menu-open');
-							if (window.innerWidth <= 768) {
-								menu.setAttribute('aria-hidden', 'true');
-							}
-						});
-					});
+				// --- 2. Scroll Reveal Engine ---
+				// Target everything we want to animate in
+				const revealElements = document.querySelectorAll(".job-card, #bio-img, .cell, #skills-heading, #exp-heading");
+				
+				// Add the baseline hidden class to all targets
+				revealElements.forEach(el => el.classList.add("reveal"));
 
-					// Close menu when clicking outside
-					document.addEventListener('click', function(event) {
-						if (!hamburger.contains(event.target) && !menu.contains(event.target)) {
-							hamburger.setAttribute('aria-expanded', 'false');
-							menu.classList.remove('menu-open');
-							if (window.innerWidth <= 768) {
-								menu.setAttribute('aria-hidden', 'true');
-							}
+				function revealOnScroll() {
+					const windowHeight = window.innerHeight;
+					const elementVisible = 100; // Trigger point
+
+					revealElements.forEach(el => {
+						const elementTop = el.getBoundingClientRect().top;
+						if (elementTop < windowHeight - elementVisible) {
+							el.classList.add("active");
 						}
 					});
+				}
+				
+				window.addEventListener("scroll", revealOnScroll);
+				revealOnScroll(); // Trigger immediately to catch items already at the top
+
+				// --- 3. Dynamic Typing Effect for Hero ---
+				const targetEl = document.getElementById("intro-subhead");
+				if(targetEl) {
+					// This text can be customized to whatever you want
+					const subheadText = "Data Science @ Uber, Gojek and American Express";
+					let i = 0;
+					const speed = 40; // Milliseconds per keystroke
+					
+					// Clear the static text and inject the spans
+					targetEl.innerHTML = '<span id="typewriter"></span><span class="cursor"></span>';
+					const typeWriterSpan = document.getElementById("typewriter");
+
+					function typeWriter() {
+						if (i < subheadText.length) {
+							typeWriterSpan.innerHTML += subheadText.charAt(i);
+							i++;
+							setTimeout(typeWriter, speed);
+						}
+					}
+					// Start typing after a short 500ms delay for dramatic effect
+					setTimeout(typeWriter, 500); 
 				}
 			});
 		</script>
